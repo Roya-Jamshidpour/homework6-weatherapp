@@ -1,21 +1,26 @@
 var userFormEl = document.querySelector('#user-form');
 var languageButtonsEl = document.querySelector('#language-buttons');
 var nameInputEl = document.querySelector('#username');
-var repoContainerEl = document.querySelector('#repos-container');
+var forecastContainerEl = document.querySelector('#forecast-container');
 var repoSearchTerm = document.querySelector('#repo-search-term');
+
+var APIKey = "76f1e6ec8ad2c03d7834f08abb441680";
+var city = nameInputEl.value.trim();
+
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
+  
 
-  if (username) {
+  if (city) {
     getUserRepos(username);
 
-    repoContainerEl.textContent = '';
+    forecastContainerEl.textContent = '';
     nameInputEl.value = '';
   } else {
-    alert('Please enter a GitHub username');
+    alert('Please enter a city');
   }
 };
 
@@ -27,7 +32,7 @@ var buttonClickHandler = function (event) {
   if (language) {
     getFeaturedRepos(language);
 
-    repoContainerEl.textContent = '';
+    forecastContainerEl.textContent = '';
   }
 };
 
@@ -69,7 +74,7 @@ var getFeaturedRepos = function (language) {
 
 var displayRepos = function (repos, searchTerm) {
   if (repos.length === 0) {
-    repoContainerEl.textContent = 'No repositories found.';
+    forecastContainerEl.textContent = 'No repositories found.';
     // Without a `return` statement, the rest of this function will continue to run and perhaps throw an error if `repos` is empty
     return;
   }
@@ -100,7 +105,7 @@ var displayRepos = function (repos, searchTerm) {
 
     repoEl.appendChild(statusEl);
 
-    repoContainerEl.appendChild(repoEl);
+    forecastContainerEl.appendChild(repoEl);
   }
 };
 
