@@ -1,21 +1,19 @@
 var userFormEl = document.querySelector('#user-form');
 var languageButtonsEl = document.querySelector('#language-buttons');
-var nameInputEl = document.querySelector('#username');
+var cityInputEl = document.querySelector('#city');
 var forecastContainerEl = document.querySelector('#forecast-container');
 var repoSearchTerm = document.querySelector('#repo-search-term');
 
 var APIKey = "76f1e6ec8ad2c03d7834f08abb441680";
-var city = nameInputEl.value.trim();
-
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var city = [];
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
-
   
-
+  city = nameInputEl.value.trim();
+  
   if (city) {
-    getUserRepos(username);
+    getForecast(city);
 
     forecastContainerEl.textContent = '';
     nameInputEl.value = '';
@@ -36,10 +34,11 @@ var buttonClickHandler = function (event) {
   }
 };
 
-var getUserRepos = function (user) {
-  var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+var getForecast = function (city) {
+    // URL to make queries to weather API
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
-  fetch(apiUrl)
+  fetch(queryULR)
     .then(function (response) {
       if (response.ok) {
         console.log(response);

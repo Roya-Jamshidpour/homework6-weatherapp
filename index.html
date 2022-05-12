@@ -16,7 +16,7 @@
   <header class="hero">
     <h1 class="app-title">
       <!-- The `<i>` element is for icons. These classes come from the Font Awesome font icon library. -->
-      <i class="fab fa-github"></i>What's the Weather Like?
+      What's the Weather Like?
     </h1>
     <p>Search for any city and see what the weather forecast is!
     </p>
@@ -29,19 +29,21 @@
       <div class="card">
         <h3 class="card-header text-uppercase">Search By City</h3>
         <form id="user-form" class="card-body">
-          <label class="form-label" for="username">City</label>
-          <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+          <label class="form-label" for="city">City</label>
+          <input name="city" id="city" type="text" autofocus="true" class="form-input" />
           <button type="submit" class="btn">Get Weather</button>
         </form>
       </div>
 
       <div class="card">
-        <h3 class="card-header text-uppercase">Search By City</h3>
+        <h3 class="card-header text-uppercase">Choose A City</h3>
         <div id="language-buttons" class="card-body">
-          <!-- These data-attribute values will be used to search for repositories when a button is clicked. -->
-          <button data-language="javascript" class="btn">JavaScript</button>
-          <button data-language="html" class="btn">HTML</button>
-          <button data-language="css" class="btn">CSS</button>
+          <!-- These data-attribute values will be used to search for cities when a button is clicked. -->
+          <button data-language="javascript" class="btn">Seattle</button>
+          <button data-language="html" class="btn">Tokyo</button>
+          <button data-language="css" class="btn">Los Angeles</button>
+          <button data-language="css" class="btn">Buenos Aires</button>
+          <button data-language="css" class="btn">Rome</button>
         </div>
       </div>
     </div>
