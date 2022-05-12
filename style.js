@@ -18,6 +18,7 @@ var formSubmitHandler = function (event) {
   
   if (city) {
     getForecast(city);
+    getUVIndex(city);
 
     forecastContainerEl.textContent = '';
     cityInputEl.value = '';
@@ -37,7 +38,7 @@ var formSubmitHandler = function (event) {
 //     forecastContainerEl.textContent = '';
 //   }
 // };
-
+// fetches weather info fromo API
 function getForecast() {
   
   fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey)
@@ -45,8 +46,10 @@ function getForecast() {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data);
-          
-          displayForecast(data, city);
+          let lat = data.coord.lat
+          let lon = data.coord.lon
+          displayForecast(lat, lon);
+          getUVIndex(lat, lon);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -56,6 +59,18 @@ function getForecast() {
       alert('Unable to connect to Weather');
     });
 };
+// function to get UV Index for city
+function getUVIndex() {
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&appid=&appid=76f1e6ec8ad2c03d7834f08abb441680")
+    // fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "$&lon=$" + lon + "&units=imperial&exclude=minutely,hourly,daily,alerts&appid=" + APIkey)
+    .then(response => response.json())
+        .then(data => {
+            let UVI = data['current']['uvi'];
+    
+})
+};
+    
+
 
 // var getFeaturedRepos = function (language) {
 //   // The `q` parameter is what language we want to query, the `+is:featured` flag adds a filter to return only featured repositories
@@ -72,6 +87,7 @@ function getForecast() {
 //   });
 // };
 
+// displays weather forecast in dynamically created cards
 function displayForecast() {
   
   for (var i = 0; i < city.length; i++) {
@@ -95,5 +111,7 @@ function displayForecast() {
   }
 };
 
-userFormEl.addEventListener('submit', formSubmitHandler);
+userFormEl.addEventListener('submit', formSubmitHandler)
+
+
 // cityButtonsEl.addEventListener('click', buttonClickHandler);
