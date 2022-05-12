@@ -72,40 +72,26 @@ function getForecast() {
 //   });
 // };
 
-var displayForecast = function (city, citySearchTerm) {
-  if (city.length === 0) {
-    forecastContainerEl.textContent = 'No city found.';
-    // Without a `return` statement, the rest of this function will continue to run and perhaps throw an error if `repos` is empty
-    return;
-  }
-
-//   citySearchTerm.textContent = searchTerm;
-
+function displayForecast() {
+  
   for (var i = 0; i < city.length; i++) {
-    // The result will be `<github-username>/<github-repository-name>`
-    var cityName = city[i].owner.login + '/' + city[i].name;
+    var cityName = citySearchTerm.value
+    citySearchTerm.textContent = cityName
 
-    var repoEl = document.createElement('div');
-    repoEl.classList = 'list-item flex-row justify-space-between align-center';
+    var cityEl = document.createElement('div');
+    cityEl.classList = 'list-item flex-row justify-space-between align-center';
 
     var titleEl = document.createElement('span');
-    titleEl.textContent = repoName;
+    titleEl.textContent = cityName;
 
-    repoEl.appendChild(titleEl);
+    forecastContainerEl.appendChild(titleEl);
 
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
+    var weatherEl = document.createElement('span');
+    weatherEl.classList = 'flex-row align-center';
 
-    if (repos[i].open_issues_count > 0) {
-      statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
-    } else {
-      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-    }
+    cityEl.appendChild(weatherEl);
 
-    repoEl.appendChild(statusEl);
-
-    forecastContainerEl.appendChild(repoEl);
+    
   }
 };
 
