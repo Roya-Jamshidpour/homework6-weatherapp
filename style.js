@@ -41,11 +41,12 @@ var formSubmitHandler = function (event) {
 function buttonClickHandler(event) {
   
   cityButtonsEl = event.target.getAttribute('preselected-city');
-    console.log(cityButtonsEl)
+  city = cityButtonsEl
+  getForecast(city)
   }
 
 // fetches weather info from API
-function getForecast() {
+function getForecast(city) {
 //   gets weather in imperial units
   fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
     .then(function (response) {
