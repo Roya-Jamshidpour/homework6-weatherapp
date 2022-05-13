@@ -69,27 +69,28 @@ function getForecast(city) {
 };
 // function to get UV Index for city
 function getUVIndex(lat, lon) {
-    let getUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
-    fetch(getUv)
+    let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
+    fetch(setUv)
     .then(function (response) {
         response.json().then(function (data){
              setUv = data.value
+             console.log(setUv)
             displayForecast(setUv);
         })
     }) 
    
 };
 // function to display forecast within a card for current day
-function displayForecast(data) {
+function displayForecast(data, setUv) {
     // getUVIndex(lat, lon);
     console.log(setUv);
     let currentDate = new Date();
-    let weatherIcon = data.weather[0].icon + ".png"
+    // let weatherIcon = data.weather[0].icon + ".png"
     var cityName = data['name'];
     var currentTemp = data.main.temp ;
     var currentWind = data.wind.speed;
     var currentHumidity = data.main.humidity;
-    console.log(cityName, weatherIcon, currentTemp, currentDate, currentWind, currentHumidity);
+    console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
 
   
     // displays name above weather display 
@@ -108,9 +109,9 @@ function displayForecast(data) {
     currentWeatherCardEl.appendChild(todayTitle);
 
     // append weather icon to card
-    let weatherIMG = document.getElementById("#weather-icon")
-    weatherIMG.innerHTML = icon;
-    currentWeatherCardEl.appendChild(weatherIMG)
+    // let weatherIMG = document.getElementById("#weather-icon")
+    // weatherIMG.innerHTML = icon;
+    // currentWeatherCardEl.appendChild(weatherIMG)
 
     // appended date to weather card
     let cardDate = document.createElement('span');
