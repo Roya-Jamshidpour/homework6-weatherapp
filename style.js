@@ -138,5 +138,7 @@ function displayForecast(data, setUv) {
 
     }
 
+    
+
 userFormEl.addEventListener('submit', formSubmitHandler);
 cityButtonsEl.addEventListener('click', buttonClickHandler);
