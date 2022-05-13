@@ -18,7 +18,7 @@ var formSubmitHandler = function (event) {
   
   if (city) {
     getForecast(city);
-    getUVIndex(city);
+    // getUVIndex(city);
 
     forecastContainerEl.textContent = '';
     cityInputEl.value = '';
@@ -38,18 +38,18 @@ var formSubmitHandler = function (event) {
 //     forecastContainerEl.textContent = '';
 //   }
 // };
-// fetches weather info fromo API
+// fetches weather info from API
 function getForecast() {
-  
-  fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey)
+//   gets weather in imperial units
+  fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           console.log(data);
           let lat = data.coord.lat
           let lon = data.coord.lon
-          displayForecast(lat, lon);
-          getUVIndex(lat, lon);
+          displayForecast(data);
+        //   getUVIndex(lat, lon);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -60,16 +60,27 @@ function getForecast() {
     });
 };
 // function to get UV Index for city
-function getUVIndex(lat, lon) {
-    console.log(lat, lon)
-    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "$&lon=$" + lon + "&units=imperial&exclude=minutely,hourly,daily,alerts&appid=" + APIKey)
-    .then(response => response.json())
-    console.log(data)
-        .then(data => {
-            let UVI = data['current']['uvi'];
+// function getUVIndex(lat, lon) {
+//     console.log(lat, lon)
+//     // THIS FETCH IS NOT WORKING FOR SOME REASON
+//     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "$&lon=$" + lon + "&units=imperial&exclude=minutely,hourly,daily,alerts&appid=" + APIKey)
+//     .then(response => response.json())
+//     console.log(data)
+//         .then(data => {
+//             let UVI = data['current']['uvi'];
     
-})
-};
+// })
+// };
+// function to display forecast within a card for current day
+function displayForecast(data) {
+    let currentDate = new Date(data.dt * 1000);
+    var cityName = data['name']
+    var currentTemp = data.main.temp 
+    var currentWind = data.wind.speed
+    var currentHumidity = data.main.humidity
+    console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity)
+
+}
     
 
 
@@ -89,28 +100,28 @@ function getUVIndex(lat, lon) {
 // };
 
 // displays weather forecast in dynamically created cards
-function displayForecast() {
+// function displayForecast() {
   
-  for (var i = 0; i < city.length; i++) {
-    var cityName = citySearchTerm.value
-    citySearchTerm.textContent = cityName
+//   for (var i = 0; i < city.length; i++) {
+//     var cityName = citySearchTerm.value
+//     citySearchTerm.textContent = cityName
 
-    var cityEl = document.createElement('div');
-    cityEl.classList = 'list-item flex-row justify-space-between align-center';
+//     var cityEl = document.createElement('div');
+//     cityEl.classList = 'list-item flex-row justify-space-between align-center';
 
-    var titleEl = document.createElement('span');
-    titleEl.textContent = cityName;
+//     var titleEl = document.createElement('span');
+//     titleEl.textContent = cityName;
 
-    forecastContainerEl.appendChild(titleEl);
+//     forecastContainerEl.appendChild(titleEl);
 
-    var weatherEl = document.createElement('span');
-    weatherEl.classList = 'flex-row align-center';
+//     var weatherEl = document.createElement('span');
+//     weatherEl.classList = 'flex-row align-center';
 
-    cityEl.appendChild(weatherEl);
+//     cityEl.appendChild(weatherEl);
 
     
-  }
-};
+//   }
+// };
 
 userFormEl.addEventListener('submit', formSubmitHandler)
 
