@@ -74,6 +74,7 @@ function getForecast() {
 // function to display forecast within a card for current day
 function displayForecast(data) {
     let currentDate = new Date();
+    let weatherIcon = data.weather[0].icon + '.png';
     var cityName = data['name'];
     var currentTemp = data.main.temp ;
     var currentWind = data.wind.speed;
@@ -93,6 +94,11 @@ function displayForecast(data) {
     let todayTitle = document.createElement('header');
     todayTitle.textContent = "TODAY";
     currentWeatherCardEl.appendChild(todayTitle);
+
+    // append weather icon to card DOES NOT WORK
+    let icon = weatherIcon.document.createElement('span');
+    icon.innerHTML = weatherIcon;
+    currentWeatherCardEl.appendChild(icon)
 
     // appended date to weather card
     let cardDate = document.createElement('span');
@@ -117,8 +123,6 @@ function displayForecast(data) {
     // append weather card into forecast container
     forecastContainerEl.appendChild(currentWeatherCardEl);
 
-
-
     }
 
 
@@ -138,30 +142,6 @@ function displayForecast(data) {
 //       alert('Error: ' + response.statusText);
 //     }
 //   });
-// };
-
-// displays weather forecast in dynamically created cards
-// function displayForecast() {
-  
-//   for (var i = 0; i < city.length; i++) {
-//     var cityName = citySearchTerm.value
-//     citySearchTerm.textContent = cityName
-
-//     var cityEl = document.createElement('div');
-//     cityEl.classList = 'list-item flex-row justify-space-between align-center';
-
-//     var titleEl = document.createElement('span');
-//     titleEl.textContent = cityName;
-
-//     forecastContainerEl.appendChild(titleEl);
-
-//     var weatherEl = document.createElement('span');
-//     weatherEl.classList = 'flex-row align-center';
-
-//     cityEl.appendChild(weatherEl);
-
-    
-//   }
 // };
 
 userFormEl.addEventListener('submit', formSubmitHandler)
