@@ -15,7 +15,7 @@ var romeButton = document.querySelector('#rome')
 
 
 
-var APIKey = "76f1e6ec8ad2c03d7834f08abb441680";
+var APIKey = "50bdbcf3a8d7a1e4f6f3760fb6754d99";
 // empty string to put user-input city into
 var city = [];
  // URL to make queries to weather API
