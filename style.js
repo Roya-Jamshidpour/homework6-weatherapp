@@ -6,11 +6,11 @@ var forecastContainerEl = document.querySelector('#forecast-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
 // city buttons 
-var seattleButton = document.querySelector('#seattle').addEventListener('click' , buttonClickHandler);
-var tokyoButton = document.querySelector('#tokyo').addEventListener('click' , buttonClickHandler);
-var losAngelesButton = document.querySelector('#los-angeles').addEventListener('click' , buttonClickHandler);
-var buenorAiresButton = document.querySelector('#buenos-aires').addEventListener('click' , buttonClickHandler);
-var romeButton = document.querySelector('#rome').addEventListener('click' , buttonClickHandler);
+var seattleButton = document.querySelector('#seattle')
+var tokyoButton = document.querySelector('#tokyo')
+var losAngelesButton = document.querySelector('#los-angeles')
+var buenorAiresButton = document.querySelector('#buenos-aires')
+var romeButton = document.querySelector('#rome')
 
 
 
@@ -131,26 +131,5 @@ function displayForecast(data) {
 
     }
 
-
-    
-
-
-// var getFeaturedRepos = function (language) {
-//   // The `q` parameter is what language we want to query, the `+is:featured` flag adds a filter to return only featured repositories
-//   // The `sort` parameter will instruct GitHub to respond with all of the repositories in order by the number of issues needing help
-  
-//   fetch(apiUrl).then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         displayForecast(data.items, language);
-//       });
-//     } else {
-//       alert('Error: ' + response.statusText);
-//     }
-//   });
-// };
-
-userFormEl.addEventListener('submit', formSubmitHandler)
-
-
-// cityButtonsEl.addEventListener('click', buttonClickHandler);
+userFormEl.addEventListener('submit', formSubmitHandler);
+cityButtonsEl.addEventListener('click', buttonClickHandler);
