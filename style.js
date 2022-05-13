@@ -5,6 +5,14 @@ var icon = document.querySelector('#weather-icon');
 var forecastContainerEl = document.querySelector('#forecast-container');
 var citySearchTerm = document.querySelector('#city-search-term');
 
+// city buttons 
+var seattleButton = document.querySelector('#seattle').addEventListener('click' , buttonClickHandler);
+var tokyoButton = document.querySelector('#tokyo').addEventListener('click' , buttonClickHandler);
+var losAngelesButton = document.querySelector('#los-angeles').addEventListener('click' , buttonClickHandler);
+var buenorAiresButton = document.querySelector('#buenos-aires').addEventListener('click' , buttonClickHandler);
+var romeButton = document.querySelector('#rome').addEventListener('click' , buttonClickHandler);
+
+
 
 var APIKey = "76f1e6ec8ad2c03d7834f08abb441680";
 // empty string to put user-input city into
@@ -28,18 +36,14 @@ var formSubmitHandler = function (event) {
     alert('Please enter a city.');
   }
 };
-// TEND TO BUTTONS LATER
-// var buttonClickHandler = function (event) {
-//   // `event.target` is a reference to the DOM element of what city button was clicked on the page
-//   var preselectedCity = event.target.getAttribute('preselected-city');
 
-//   // If there is no city read from the button, don't attempt to fetch weather
-//   if (city) {
-//     getFeaturedRepos(city);
+// Buttons to load weather info for specific cities
+function buttonClickHandler(event) {
+  
+  cityButtonsEl = event.target.getAttribute('preselected-city');
+    console.log(cityButtonsEl)
+  }
 
-//     forecastContainerEl.textContent = '';
-//   }
-// };
 // fetches weather info from API
 function getForecast() {
 //   gets weather in imperial units
