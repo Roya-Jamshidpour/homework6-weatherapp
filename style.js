@@ -73,13 +73,31 @@ function getForecast() {
 // };
 // function to display forecast within a card for current day
 function displayForecast(data) {
-    let currentDate = new Date(data.dt * 1000);
+    let currentDate = new Date();
     var cityName = data['name'];
     var currentTemp = data.main.temp ;
     var currentWind = data.wind.speed;
     var currentHumidity = data.main.humidity;
     console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
+    // displays name avove weather display 
     citySearchTerm.innerHTML = cityName;
+
+    // Forecast Container Element
+    forecastContainerEl.classList = 'flex-row align-center'
+
+    // current weather card
+    let currentWeatherCardEl = document.createElement('div');
+    currentWeatherCardEl.classList = 'flex-column align-center forecast-card-body card';
+
+    let cardDate = document.createElement('span');
+    cardDate.textContent = currentDate;
+
+    // appended date to weather card
+    currentWeatherCardEl.appendChild(cardDate);
+
+    // append weather card into forecast container
+    forecastContainerEl.appendChild(currentWeatherCardEl);
+
 
     }
 
