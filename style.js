@@ -79,7 +79,7 @@ function displayForecast(data) {
     var currentWind = data.wind.speed;
     var currentHumidity = data.main.humidity;
     console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
-    // displays name avove weather display 
+    // displays name above weather display 
     citySearchTerm.innerHTML = cityName;
 
     // Forecast Container Element
@@ -87,16 +87,36 @@ function displayForecast(data) {
 
     // current weather card
     let currentWeatherCardEl = document.createElement('div');
-    currentWeatherCardEl.classList = 'flex-column align-center forecast-card-body card';
+    currentWeatherCardEl.classList = 'flex-column align-center current-card-body card';
 
-    let cardDate = document.createElement('span');
-    cardDate.textContent = currentDate;
+    // append "today" to top of card as title
+    let todayTitle = document.createElement('header');
+    todayTitle.textContent = "TODAY";
+    currentWeatherCardEl.appendChild(todayTitle);
 
     // appended date to weather card
+    let cardDate = document.createElement('span');
+    cardDate.textContent = currentDate;
     currentWeatherCardEl.appendChild(cardDate);
+
+    // append temperature value to card
+    let cardTemp = document.createElement('span');
+    cardTemp.textContent = "Current Temperature : " + currentTemp + "℉";
+    currentWeatherCardEl.appendChild(cardTemp);
+
+    // append wind value to card
+    let windValue = document.createElement('span');
+    windValue.textContent = "Current Wind : " + currentWind + "mph";
+    currentWeatherCardEl.appendChild(windValue);
+
+    // append humidity to card
+    let humidityValue = document.createElement('span');
+    humidityValue.textContent = "Current Humidity : " + currentHumidity + "%"
+    currentWeatherCardEl.appendChild(humidityValue);
 
     // append weather card into forecast container
     forecastContainerEl.appendChild(currentWeatherCardEl);
+
 
 
     }
