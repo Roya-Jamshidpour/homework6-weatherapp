@@ -15,7 +15,6 @@
 <body class="flex-column min-100-vh">
   <header class="hero">
     <h1 class="app-title">
-      <!-- The `<i>` element is for icons. These classes come from the Font Awesome font icon library. -->
       What's the Weather Like?
     </h1>
     <p>Search for any city and see what the weather forecast is!
@@ -25,7 +24,7 @@
 
   <main class="flex-row justify-space-between">
     <div class="col-12 col-md-4">
-
+        <!-- search bar to find city weather -->
       <div class="card">
         <h3 class="card-header text-uppercase">Search By City</h3>
         <form id="user-form" class="card-body">
@@ -35,6 +34,7 @@
         </form>
       </div>
 
+      <!-- buttons to choose a specific city -->
       <div class="card">
         <h3 class="card-header text-uppercase">Choose A City</h3>
         <div id="city-buttons" class="card-body">
@@ -50,8 +50,10 @@
 
     <div class="col-12 col-md-8">
       <h2 class="subtitle">Showing 5-Day Forecast For: <span id="city-search-term"></span></h2>
-      <!-- There needs to be an empty HTML element for us to write weather forecast data to. -->
-      <div id="forecast-container" class="list-group"></div>
+      <!-- empty div to put forecast cards into -->
+      <div id="forecast-container" class="list-group">
+          <i id="weather-icon"></i>
+      </div>
     </div>
   </main>
 

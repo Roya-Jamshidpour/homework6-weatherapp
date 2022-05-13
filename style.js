@@ -1,8 +1,10 @@
 var userFormEl = document.querySelector('#user-form');
 var cityButtonsEl = document.querySelector('#city-buttons');
 var cityInputEl = document.querySelector('#city');
+var icon = document.querySelector('#weather-icon');
 var forecastContainerEl = document.querySelector('#forecast-container');
 var citySearchTerm = document.querySelector('#city-search-term');
+
 
 var APIKey = "76f1e6ec8ad2c03d7834f08abb441680";
 // empty string to put user-input city into
@@ -79,12 +81,12 @@ function displayForecast(data) {
     var currentTemp = data.main.temp ;
     var currentWind = data.wind.speed;
     var currentHumidity = data.main.humidity;
-    console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
+    console.log(cityName, weatherIcon, currentTemp, currentDate, currentWind, currentHumidity);
     // displays name above weather display 
     citySearchTerm.innerHTML = cityName;
 
     // Forecast Container Element
-    forecastContainerEl.classList = 'flex-row align-center'
+    forecastContainerEl.classList = 'flex-row align-center current-card-body'
 
     // current weather card
     let currentWeatherCardEl = document.createElement('div');
@@ -95,8 +97,7 @@ function displayForecast(data) {
     todayTitle.textContent = "TODAY";
     currentWeatherCardEl.appendChild(todayTitle);
 
-    // append weather icon to card DOES NOT WORK
-    let icon = weatherIcon.document.createElement('span');
+    // append weather icon to card
     icon.innerHTML = weatherIcon;
     currentWeatherCardEl.appendChild(icon)
 
