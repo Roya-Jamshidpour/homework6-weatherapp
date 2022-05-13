@@ -74,13 +74,16 @@ function getForecast() {
 // function to display forecast within a card for current day
 function displayForecast(data) {
     let currentDate = new Date(data.dt * 1000);
-    var cityName = data['name']
-    var currentTemp = data.main.temp 
-    var currentWind = data.wind.speed
-    var currentHumidity = data.main.humidity
-    console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity)
+    var cityName = data['name'];
+    var currentTemp = data.main.temp ;
+    var currentWind = data.wind.speed;
+    var currentHumidity = data.main.humidity;
+    console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
+    citySearchTerm.innerHTML = cityName;
 
-}
+    }
+
+
     
 
 
