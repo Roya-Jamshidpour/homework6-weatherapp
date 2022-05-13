@@ -99,7 +99,7 @@ function displayForecast(data) {
 
     // append "today" to top of card as title
     let todayTitle = document.createElement('header');
-    todayTitle.textContent = "TODAY";
+    todayTitle.textContent = "TODAY in " + city;
     currentWeatherCardEl.appendChild(todayTitle);
 
     // append weather icon to card
