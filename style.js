@@ -60,10 +60,11 @@ function getForecast() {
     });
 };
 // function to get UV Index for city
-function getUVIndex() {
-    fetch("https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&appid=&appid=76f1e6ec8ad2c03d7834f08abb441680")
-    // fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "$&lon=$" + lon + "&units=imperial&exclude=minutely,hourly,daily,alerts&appid=" + APIkey)
+function getUVIndex(lat, lon) {
+    console.log(lat, lon)
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "$&lon=$" + lon + "&units=imperial&exclude=minutely,hourly,daily,alerts&appid=" + APIKey)
     .then(response => response.json())
+    console.log(data)
         .then(data => {
             let UVI = data['current']['uvi'];
     
