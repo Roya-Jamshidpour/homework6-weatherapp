@@ -18,80 +18,67 @@ var APIKey = "50bdbcf3a8d7a1e4f6f3760fb6754d99"
 
 // empty string to put user-input city into
 var city = [];
- // URL to make queries to weather API
+// URL to make queries to weather API
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // function to take user input for city weather search
 var formSubmitHandler = function (event) {
-  event.preventDefault();
-  
-  city = cityInputEl.value;
-  
-  if (city) {
-    getForecast(city);
-    // getUVIndex(city);
+    event.preventDefault();
 
-    forecastContainerEl.textContent = '';
-    cityInputEl.value = '';
-  } else {
-    alert('Please enter a city.');
-  }
+    city = cityInputEl.value;
+
+    if (city) {
+        getForecast(city);
+        // getUVIndex(city);
+
+        forecastContainerEl.textContent = '';
+        cityInputEl.value = '';
+    } else {
+        alert('Please enter a city.');
+    }
 };
 
 // Buttons to load weather info for specific cities
 function buttonClickHandler(event) {
-  
-  cityButtonsEl = event.target.getAttribute('preselected-city');
-  city = cityButtonsEl
-  getForecast(city)
-  }
+
+    cityButtonsEl = event.target.getAttribute('preselected-city');
+    city = cityButtonsEl
+    getForecast(city)
+}
 
 // fetches weather info from API
 function getForecast(city) {
-//   gets weather in imperial units
-  fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          lon = data.coord.lon
-          lat = data.coord.lat
-        //   getUVIndex(lat, lon);
-          displayForecast(data);
-        
+    //   gets weather in imperial units
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (data) {
+                    lon = data.coord.lon
+                    lat = data.coord.lat
+                    //   getUVIndex(lat, lon);
+                    displayForecast(data);
+
+                });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        })
+        .catch(function (error) {
+            alert('Unable to connect to Weather');
         });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect to Weather');
-    });
 };
-// function to get UV Index for city
-// function getUVIndex(lat, lon) {
-//     let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
-//     fetch(setUv)
-//     .then(function (response) {
-//         response.json().then(function (data){
-//              setUv = data.value
-//              console.log(setUv)
-//              letUVIDisplay = document.createElement('span')
-//             displayForecast(setUv);
-//         })
-//     }) 
-   
-// };
+
 // function to display forecast within a card for current day
 function displayForecast(data) {
     let currentDate = new Date();
     // let weatherIcon = data.weather[0].icon + ".png"
     var cityName = data['name'];
-    var currentTemp = data.main.temp ;
+    var currentTemp = data.main.temp;
     var currentWind = data.wind.speed;
     var currentHumidity = data.main.humidity;
     console.log(cityName, currentTemp, currentDate, currentWind, currentHumidity);
 
-  
+
     // displays name above weather display 
     citySearchTerm.innerHTML = cityName;
 
@@ -138,23 +125,40 @@ function displayForecast(data) {
     getUVIndex(lat, lon);
 
     // function to get UV Index for city
-function getUVIndex(lat, lon) {
-    let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
-    fetch(setUv)
-    .then(function (response) {
-        response.json().then(function (data){
-             setUv = data.value
-             // displays UV index in weather card
-            let currentUVI = document.createElement('span');
-            currentUVI.textContent = "UV Index : " + setUv;
-            currentWeatherCardEl.appendChild(currentUVI);
-            
-            
-        
-        })
-    }) 
-   
-};
+    function getUVIndex(lat, lon) {
+        let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
+        fetch(setUv)
+            .then(function (response) {
+                response.json().then(function (data) {
+                    setUv = data.value
+                    // displays UV index in weather card
+                    let currentUVI = document.createElement('span');
+                    currentUVI.textContent = "UV Index : " + setUv;
+                    currentWeatherCardEl.appendChild(currentUVI);
+
+                    if (setUv < 2) {
+                        currentUVI.classList = 'low';
+                       
+                    }
+
+                    else if (setUv < 5) {
+                        currentUVI.classList = 'medium';
+                        
+                    }
+
+                    else if (setUv < 7) {
+                        currentUVI.classList = 'moderate';
+                        
+                    }
+                    else if (setUv < 11) {
+                        currentUVI.classList = 'high';
+                        
+
+                    }
+                })
+            })
+
+    };
 }
 
 

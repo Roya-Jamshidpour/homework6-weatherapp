@@ -204,6 +204,30 @@
     flex-wrap: wrap;
   }
   
+  /* classes to add to elements based on UV index */
+
+  .low {
+    background-color: rgb(253, 235, 152);
+    
+  }
+
+  .medium {
+    background-color: rgb(252, 217, 61);
+    
+  }
+
+  .moderate {
+    background-color: rgb(250, 190, 60);
+    
+  }
+
+  .high {
+    background-color: rgb(250, 155, 67);
+    
+    
+  }
+
+  /* classes to add to dynamically created elements */
   .flex-column {
     display: flex;
     flex-direction: column;
