@@ -115,9 +115,13 @@
   }
   
   .list-group {
-    padding: 0;
-    list-style: none;
-  }
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+    
+  
   
   .list-item {
     margin-bottom: 10px;
@@ -231,7 +235,6 @@
   .flex-column {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
   }
   
   .justify-space-between {

@@ -71,7 +71,8 @@ function getForecast(city) {
 // function to display forecast within a card for current day
 function displayForecast(data) {
     let currentDate = new Date();
-    // let weatherIcon = data.weather[0].icon + ".png"
+    let weatherIcon = 'https://openweathermap.org/img/w/' + data.weather[0].icon + '.png';
+    console.log(weatherIcon)
     var cityName = data['name'];
     var currentTemp = data.main.temp;
     var currentWind = data.wind.speed;
@@ -83,7 +84,7 @@ function displayForecast(data) {
     citySearchTerm.innerHTML = cityName;
 
     // Forecast Container Element
-    forecastContainerEl.classList = 'flex-row align-center current-card-body'
+    forecastContainerEl.classList = 'flex-row align-center current-card-body' 
 
     // current weather card
     let currentWeatherCardEl = document.createElement('div');
@@ -96,7 +97,7 @@ function displayForecast(data) {
 
     // append weather icon to card
     // let weatherIMG = document.getElementById("#weather-icon")
-    // weatherIMG.innerHTML = icon;
+    // weatherIMG.innerHTML = weatherIcon;
     // currentWeatherCardEl.appendChild(weatherIMG)
 
     // appended date to weather card
