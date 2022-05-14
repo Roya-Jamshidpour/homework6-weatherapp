@@ -13,8 +13,8 @@ var losAngelesButton = document.querySelector('#los-angeles')
 var buenorAiresButton = document.querySelector('#buenos-aires')
 var romeButton = document.querySelector('#rome')
 
-var APIKey = config.APIkey;
-var token = config.APIToken;
+var APIKey = "50bdbcf3a8d7a1e4f6f3760fb6754d99"
+
 
 // empty string to put user-input city into
 var city = [];
