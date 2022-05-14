@@ -55,7 +55,7 @@ function getForecast(city) {
         response.json().then(function (data) {
           lon = data.coord.lon
           lat = data.coord.lat
-          getUVIndex(lat, lon);
+        //   getUVIndex(lat, lon);
           displayForecast(data);
         
         });
@@ -68,22 +68,21 @@ function getForecast(city) {
     });
 };
 // function to get UV Index for city
-function getUVIndex(lat, lon) {
-    let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
-    fetch(setUv)
-    .then(function (response) {
-        response.json().then(function (data){
-             setUv = data.value
-             console.log(setUv)
-            displayForecast(setUv);
-        })
-    }) 
+// function getUVIndex(lat, lon) {
+//     let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
+//     fetch(setUv)
+//     .then(function (response) {
+//         response.json().then(function (data){
+//              setUv = data.value
+//              console.log(setUv)
+//              letUVIDisplay = document.createElement('span')
+//             displayForecast(setUv);
+//         })
+//     }) 
    
-};
+// };
 // function to display forecast within a card for current day
-function displayForecast(data, setUv) {
-    // getUVIndex(lat, lon);
-    console.log(setUv);
+function displayForecast(data) {
     let currentDate = new Date();
     // let weatherIcon = data.weather[0].icon + ".png"
     var cityName = data['name'];
@@ -136,7 +135,27 @@ function displayForecast(data, setUv) {
     // append weather card into forecast container
     forecastContainerEl.appendChild(currentWeatherCardEl);
 
-    }
+    getUVIndex(lat, lon);
+
+    // function to get UV Index for city
+function getUVIndex(lat, lon) {
+    let setUv = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`
+    fetch(setUv)
+    .then(function (response) {
+        response.json().then(function (data){
+             setUv = data.value
+             // displays UV index in weather card
+            let currentUVI = document.createElement('span');
+            currentUVI.textContent = "UV Index : " + setUv;
+            currentWeatherCardEl.appendChild(currentUVI);
+            
+            
+        
+        })
+    }) 
+   
+};
+}
 
 
 
