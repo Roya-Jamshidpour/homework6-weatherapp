@@ -19,7 +19,7 @@ var APIKey = "50bdbcf3a8d7a1e4f6f3760fb6754d99"
 // empty string to put user-input city into
 var city = [];
  // URL to make queries to weather API
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // function to take user input for city weather search
 var formSubmitHandler = function (event) {
@@ -49,7 +49,7 @@ function buttonClickHandler(event) {
 // fetches weather info from API
 function getForecast(city) {
 //   gets weather in imperial units
-  fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey + "&units=imperial")
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
